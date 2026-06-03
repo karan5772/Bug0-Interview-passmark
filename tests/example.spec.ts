@@ -3,8 +3,7 @@ import { runSteps, configure } from "passmark";
 
 configure({
   ai: {
-    mode: "cua",
-    gateway: "none", // CUA requires direct OpenAI access
+    gateway: "openrouter",
   },
 });
 
@@ -15,7 +14,7 @@ test.use({
 test("Test Case 3: Login User with incorrect email and password", async ({
   page,
 }) => {
-  test.setTimeout(90_000); // increase timeout for AI execution and API calls
+  test.setTimeout(90_000);
 
   await runSteps({
     page,
@@ -44,21 +43,3 @@ test("Test Case 3: Login User with incorrect email and password", async ({
     expect,
   });
 });
-
-// test("Shopping cart tests", async ({ page }) => {
-//   test.setTimeout(11160_000); // increase timeout for AI execution
-//   await runSteps({
-//     page,
-//     userFlow: "Add product to cart",
-//     steps: [
-//       { description: "Navigate to https://demo.vercel.store" },
-//       { description: "Click Acme Circles T-Shirt" },
-//       { description: "Select color", data: { value: "White" } },
-//       { description: "Select size", data: { value: "S" } },
-//       { description: "Add to cart", waitUntil: "My Cart is visible" },
-//     ],
-//     assertions: [{ assertion: "You can see My Cart with Acme Circles T-Shirt" }],
-//     test,
-//     expect
-//   });
-// });
